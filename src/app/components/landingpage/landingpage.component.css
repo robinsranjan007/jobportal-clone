@@ -1,0 +1,114 @@
+.input-search{
+    width: 50%;
+    border-radius: 50px;
+    height: 75px;
+    color: rgb(216, 209, 209);
+}
+
+.button-search{
+    border-radius: 25px;
+    position: absolute;
+    top: 270px;
+    right: 450px;
+    width: 130px;
+}
+ 
+
+.search-icon{
+    transform: scale(1.7);
+    position: absolute;
+    top: 285px;
+    left: 445px;
+    color: grey;
+    font-weight:200;
+}
+ 
+.box
+{
+    border: 1px solid rgb(144, 144, 144);
+    border-radius: 20px;
+    width: 150px;
+    margin: 10px;
+    height: 30px;
+    padding-top: 5px;
+}
+
+.box mat-icon{
+padding: 5px;
+}
+
+.naukri-360{
+    border: 1px solid rgb(231, 220, 220);
+    width: 60%;
+    border-radius: 25px;
+}
+.naukri-img{
+    height: 200px;
+    width: 150px;
+}
+.naukri-360 p{
+    width: 200px;
+}
+
+.remote-mnc .col
+{
+border: 1px solid black;
+width: 150px;
+
+margin: 10px;
+height: 70px;
+border-radius: 12px;
+}
+
+.first-container
+{
+    /* border: 1px solid black; */
+    width: 70vw;
+}
+
+.second-container{
+    width: 60vw;
+    /* border: 1px solid black; */
+}
+
+ 
+.example-card {
+    max-width: 200px;
+  }
+
+ 
+
+.example-card button{
+    background-color: rgb(225, 239, 255);
+    border-radius: 20px;
+    width: 150px;
+}
+
+.card-3d {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-3d:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+
+  .hiring-logos img{
+    width: 50px;
+  }
+
+  .top-hiring mat-card{
+     
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .viewall-companies{
+width: 250px;
+border-radius: 25px;
+  }
+  hr {
+    border-top: 5px solid black;
+}

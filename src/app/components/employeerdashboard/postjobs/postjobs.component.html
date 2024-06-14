@@ -1,0 +1,133 @@
+<div class="container d-flex  align-items-center flex-column">
+    <h1>POST YOUR REQUIREMENTS</h1>
+    <form class="mt-5"  [formGroup]="reactiveform" (ngSubmit)="submit()">
+        <div class="d-flex ms-3">
+            <!-- Profile Name -->
+            <mat-form-field class="half-width" appearance="fill">
+                <mat-label >Profile Name</mat-label>
+                <input type="text" matInput placeholder="Profile Name"  [formControlName]="'profileName'" />
+            </mat-form-field>
+            <!-- Company Name -->
+            <mat-form-field class="half-width ms-5" appearance="fill">
+                <mat-label>Company Name</mat-label>
+                <input type="text" matInput  placeholder="Company Name"  [formControlName]="'companyname'" />
+            </mat-form-field>
+        </div>
+
+        <div class="ms-3">
+            <!-- Role -->
+            <mat-form-field class="half-width" appearance="fill">
+                <mat-label>Role</mat-label>
+                <input type="text" matInput placeholder="Role"  [formControlName]="'role'" />
+                </mat-form-field>
+           
+
+            <!-- Experience -->
+            <mat-form-field class="half-width ms-5" appearance="fill">
+                <mat-label>Experience</mat-label>
+                <input type="text" matInput placeholder="Experience" [formControlName]="'experience'" />
+            </mat-form-field>
+        </div>
+
+        <div class="ms-3 me-5">
+            <!-- Cost to Company -->
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Cost to Company</mat-label>
+                <input type="text" matInput placeholder="Cost to Company" [formControlName]="'costToCompany'" />
+            </mat-form-field>
+
+            <!-- Company Logo -->
+        </div>
+
+        <div>
+            <!-- Location -->
+            <mat-form-field class="half-width " appearance="fill">
+                <mat-label>opening location</mat-label>
+                <input type="text" matInput placeholder="Location" [formControlName]="'openingLocation'" />
+            </mat-form-field>
+
+            <!-- Openings -->
+            <mat-form-field class="half-width ms-5" appearance="fill">
+                <mat-label>Openings</mat-label>
+                <input type="text" matInput placeholder="Openings" [formControlName]="'openings'" />
+            </mat-form-field>
+        </div>
+
+        <div class="ms-3 me-5">
+            <mat-form-field class="full-width" appearance="fill" >
+                <mat-label>Company Logo</mat-label>
+                <input type="text" matInput placeholder="Company Logo" [formControlName]="'companyLogo'" />
+            </mat-form-field>
+        </div>
+
+        <div>
+            <!-- Job Description -->
+            <mat-form-field class="half-width" appearance="fill">
+                <mat-label>Job Description</mat-label>
+                <input type="text" matInput placeholder="Job Description" [formControlName]="'jobDescription'" />
+            </mat-form-field>
+
+            <!-- Educational Qualification -->
+            <mat-form-field class="half-width ms-5" appearance="fill">
+                <mat-label>Higest Educational</mat-label>
+                <input type="text" matInput placeholder="Educational Qualification"  [formControlName]="'higestEducation'"/>
+            </mat-form-field>
+        </div>
+        <div>
+            <!-- Employment Type -->
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Employment Type</mat-label>
+                <input type="text" matInput placeholder="Employment Type" [formControlName]="'employementType'" />
+            </mat-form-field>
+        </div>
+        <div>
+            <!-- Industry Type -->
+            <mat-form-field class="half-width" appearance="fill">
+                <mat-label>Industry Type</mat-label>
+                <input type="text" matInput placeholder="Industry Type" />
+            </mat-form-field>
+
+            <!-- Department -->
+            <mat-form-field class="half-width ms-5" appearance="fill">
+                <mat-label>Department</mat-label>
+                <input type="text" matInput placeholder="Department" />
+            </mat-form-field>
+        </div>
+
+        <div  [formGroupName]="'address'">
+            <!-- Location -->
+             <h3 class="text-center">Full Address of the company</h3>
+            <mat-form-field class="half-width" appearance="fill">
+                <mat-label>State</mat-label>
+                <input type="text" matInput placeholder="State" />
+            </mat-form-field>
+
+            <mat-form-field class="half-width ms-5" appearance="fill">
+                <mat-label>City</mat-label>
+                <input type="text" matInput placeholder="City" />
+            </mat-form-field>
+
+            <mat-form-field class="half-width" appearance="fill">
+                <mat-label>Street Number</mat-label>
+                <input type="text" matInput placeholder="Street Number" />
+            </mat-form-field>
+
+            <mat-form-field class="half-width ms-5" appearance="fill">
+                <mat-label>Pincode</mat-label>
+                <input type="text" matInput placeholder="Pincode" />
+            </mat-form-field>
+        </div>
+<hr>
+        <div>
+            <!-- Skills Required -->
+            <mat-form-field class="half-width" appearance="fill">
+                <mat-label>Skills Required</mat-label>
+                <input type="text" matInput placeholder="Skills Required" />
+            </mat-form-field>
+            <button type="button" class="btn btn-outline-primary half-width ms-5">click to add More</button>
+        </div>
+        <div class="container ">
+            <button style="width: 100%;" mat-stroked-button color="primary" type="submit">Primary</button>
+        </div>
+    </form>
+</div>

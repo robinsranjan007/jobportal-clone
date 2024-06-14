@@ -1,0 +1,22 @@
+.box-2
+{
+    width: 400px;
+    color: grey;
+    margin-left: 100px;
+}
+.box-3
+{
+    color: grey;
+    font-weight: 500;
+}
+
+.box-4-images{
+    margin-left: 100px;
+    /* border: 1px solid black; */
+}
+
+.box-4-images img{
+width: 100px;
+margin-right: 5px;
+
+}
