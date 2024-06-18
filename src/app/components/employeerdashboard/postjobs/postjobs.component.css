@@ -1,21 +1,24 @@
- 
+form {
+  /* border: 1px solid black; */
+  width: 80%;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
- form{
-    border: 1px solid black;
-    width: 80%;
-    border-radius: 12px;
- }
+.half-width {
+  width: 45%;
+}
 
- .half-width{
-    width: 45%;
- }
+.full-width {
+  width: 100%;
+}
 
- .full-width{
-    width: 100%;
- }
-
- ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
-    background-color: transparent;  
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: transparent;
 }
 
 
+.postjobs-modal {
+  max-height: 80vh; /* Adjust the height as needed */
+  overflow-y: auto;
+}

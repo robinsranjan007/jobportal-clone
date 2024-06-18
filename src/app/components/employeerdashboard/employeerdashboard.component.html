@@ -1,1 +1,49 @@
- <app-postjobs></app-postjobs>
+<mat-spinner *ngIf="loadspinner"></mat-spinner>
+<mat-card *ngIf="!loadspinner" class="job-profile-card mt-5">
+  <div class="container d-flex">
+
+    <mat-card-header class="align-items-center">
+      <div mat-card-avatar class="company-logo mb-4">
+        <img src="../../../assets/images/nauk360.png" alt="Tech Company logo">
+      </div>
+      <mat-card-title class="ms-5"> </mat-card-title>
+      <mat-card-subtitle class="ms-5"> </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p><strong>Role:</strong> Frontend Developer</p>
+      <p><strong>Experience:</strong> 3-5 years</p>
+      <p><strong>Cost to Company:</strong> $80,000 - $100,000</p>
+      <p><strong>Location:</strong> New York, NY</p>
+      <p><strong>Openings:</strong> 3</p>
+      <p><strong>Job Description:</strong> Develop and maintain web applications.</p>
+      <p><strong>Highest Education:</strong> Bachelor's Degree in Computer Science</p>
+      <p><strong>Employment Type:</strong> Full-time</p>
+      <p><strong>Industry Type:</strong> Information Technology</p>
+
+    </mat-card-content>
+
+    <mat-card-content>
+      <p><strong>Department:</strong> Development</p>
+      <p><strong>Address:</strong> 123, New York City, New York, 10001</p>
+      <p><strong>Skills Required:</strong></p>
+      <ul class="skills-list">
+        <li class="ms-1 mt-1">Angular</li>
+        <li class="ms-1 mt-1">javascript</li>
+        <li class="ms-1 mt-1">typescript</li>
+        <li class="ms-1 mt-1">typescript</li>
+      </ul>
+
+    </mat-card-content>
+    <div class="buttons d-flex align-items-center">
+      <button mat-stroked-button color="primary" style="width: 90px;" class="ms-5">update</button>
+      <button mat-stroked-button color="accent" style="width: 90px;" class="ms-5">delete</button>
+    </div>
+
+  </div>
+
+</mat-card>
+
+<div class="addmore container">
+</div>
+<button mat-stroked-button color="accent" (click)="openPopUpModal()">Post more jobs</button>

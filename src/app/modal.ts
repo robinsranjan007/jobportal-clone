@@ -1,6 +1,6 @@
 export interface jobsProfile{
-ProfileName:string,
-companyname:string,
+    profileName:string,
+    companyName:string,
 role:string,
 experience:string,
 costToCompany:string,
@@ -12,7 +12,7 @@ higestEducation:string,
 employementType:string,
 industryType:string,
 department:string,
-address:address,
+address:address[],
 skillsRequired:string[],
 }
 

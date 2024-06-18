@@ -18,6 +18,9 @@ import { PostjobsComponent } from './components/employeerdashboard/postjobs/post
 import { ApplicationsComponent } from './components/applications/applications.component';
 import { EmployeerdashboardComponent } from './components/employeerdashboard/employeerdashboard.component';
 import { ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from  '@angular/common/http';
+import { ErrorComponent } from './components/error/error.component';
+ 
  
 
 @NgModule({
@@ -33,6 +36,9 @@ import { ReactiveFormsModule} from '@angular/forms';
       PostjobsComponent,
       ApplicationsComponent,
       EmployeerdashboardComponent,
+      ErrorComponent,
+    
+     
       
   ],
   imports: [
@@ -42,7 +48,8 @@ import { ReactiveFormsModule} from '@angular/forms';
     BrowserAnimationsModule,
     MaterialModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
    
   ],
   providers: [],
