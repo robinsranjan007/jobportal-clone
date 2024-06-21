@@ -1,49 +1,85 @@
 <mat-spinner *ngIf="loadspinner"></mat-spinner>
-<mat-card *ngIf="!loadspinner" class="job-profile-card mt-5">
-  <div class="container d-flex">
 
-    <mat-card-header class="align-items-center">
-      <div mat-card-avatar class="company-logo mb-4">
-        <img src="../../../assets/images/nauk360.png" alt="Tech Company logo">
-      </div>
-      <mat-card-title class="ms-5"> </mat-card-title>
-      <mat-card-subtitle class="ms-5"> </mat-card-subtitle>
-    </mat-card-header>
-
-    <mat-card-content>
-      <p><strong>Role:</strong> Frontend Developer</p>
-      <p><strong>Experience:</strong> 3-5 years</p>
-      <p><strong>Cost to Company:</strong> $80,000 - $100,000</p>
-      <p><strong>Location:</strong> New York, NY</p>
-      <p><strong>Openings:</strong> 3</p>
-      <p><strong>Job Description:</strong> Develop and maintain web applications.</p>
-      <p><strong>Highest Education:</strong> Bachelor's Degree in Computer Science</p>
-      <p><strong>Employment Type:</strong> Full-time</p>
-      <p><strong>Industry Type:</strong> Information Technology</p>
-
-    </mat-card-content>
-
-    <mat-card-content>
-      <p><strong>Department:</strong> Development</p>
-      <p><strong>Address:</strong> 123, New York City, New York, 10001</p>
-      <p><strong>Skills Required:</strong></p>
-      <ul class="skills-list">
-        <li class="ms-1 mt-1">Angular</li>
-        <li class="ms-1 mt-1">javascript</li>
-        <li class="ms-1 mt-1">typescript</li>
-        <li class="ms-1 mt-1">typescript</li>
-      </ul>
-
-    </mat-card-content>
-    <div class="buttons d-flex align-items-center">
-      <button mat-stroked-button color="primary" style="width: 90px;" class="ms-5">update</button>
-      <button mat-stroked-button color="accent" style="width: 90px;" class="ms-5">delete</button>
-    </div>
-
-  </div>
-
-</mat-card>
-
-<div class="addmore container">
+<div class="clear" *ngIf="jobsProfileData.length==0">
+  Nothing to display
 </div>
-<button mat-stroked-button color="accent" (click)="openPopUpModal()">Post more jobs</button>
+
+<ng-template *ngIf="jobsProfileData.length!=0">
+
+
+
+<div class="jobsPosts" *ngFor="let item of jobsProfileData">
+  <mat-card *ngIf="!loadspinner" class="job-profile-card mt-5">
+    <div class="container d-flex">
+      <mat-card-header class="align-items-center">
+        <div mat-card-avatar class="company-logo mb-4">
+          <img src="{{ item.companyLogo }}" alt="Tech Company logo" />
+        </div>
+        <mat-card-title class="ms-5"> </mat-card-title>
+        <mat-card-subtitle class="ms-5"> </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p><strong>Role:</strong> {{ item.role }}</p>
+        <p><strong>Experience:</strong> {{ item.experience }}</p>
+        <p><strong>Cost to Company:</strong> {{ item.costToCompany }}</p>
+        <p><strong>Location:</strong> {{ item.openingLocation }}</p>
+        <p><strong>Openings:</strong> {{ item.openings }}</p>
+        <p><strong>Job Description:</strong> {{ item.jobDescription }}</p>
+        <p><strong>Highest Education:</strong>{{ item.higestEducation }}</p>
+        <p><strong>Employment Type:</strong> {{ item.employementType }}</p>
+        <p><strong>Industry Type:</strong> {{ item.industryType }}</p>
+      </mat-card-content>
+
+      <mat-card-content>
+        <p><strong>Address:</strong></p>
+        <ul>
+          <li *ngFor="let addr of item.address">
+            {{ addr.streetNumber }}, {{ addr.city }}, {{ addr.state }} -
+            {{ addr.pincode }}
+          </li>
+        </ul>
+
+        <p><strong>Skills Required:</strong></p>
+        <ul class="skills-list">
+          <li *ngFor="let skill of item.skills" class="ms-1 mt-1">
+            {{ skill }}
+          </li>
+        </ul>
+      </mat-card-content>
+      <div class="buttons d-flex align-items-center">
+        <button
+          mat-stroked-button
+          color="primary"
+          style="width: 90px"
+          class="ms-5"
+        >
+          update
+        </button>
+       
+        
+        <button mat-stroked-button class="ms-3" (click)="openDescriptionModal(item.detailDescription)">description</button>
+        <button mat-raised-button color="primary" (click)="deleteJobModal(item.id)">deletemodal</button>
+      </div>
+
+    </div>
+  </mat-card>
+</div>
+
+</ng-template>
+
+<div class="addmore container"></div>
+<button mat-stroked-button color="accent" (click)="openPopUpModal()">
+  Post more jobs
+</button>
+
+
+<ng-template #deleteJobPost  let-dialogRef="dialogRef">
+  <h2 mat-dialog-title style="color: red;">Warning!!!</h2>
+<mat-dialog-content>
+  <strong style="color: red;"><h2>Are you sure you want to delete  this jobs opening</h2></strong>
+  <button mat-dialog-close>close</button>
+  <button (click)="dialogRef.close('yes')">Delete</button>
+</mat-dialog-content>
+
+</ng-template>

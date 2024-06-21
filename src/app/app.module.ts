@@ -20,6 +20,7 @@ import { EmployeerdashboardComponent } from './components/employeerdashboard/emp
 import { ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from  '@angular/common/http';
 import { ErrorComponent } from './components/error/error.component';
+import { DescriptionmodalComponent } from './components/employeerdashboard/descriptionmodal/descriptionmodal.component';
  
  
 
@@ -37,6 +38,7 @@ import { ErrorComponent } from './components/error/error.component';
       ApplicationsComponent,
       EmployeerdashboardComponent,
       ErrorComponent,
+      DescriptionmodalComponent,
     
      
       

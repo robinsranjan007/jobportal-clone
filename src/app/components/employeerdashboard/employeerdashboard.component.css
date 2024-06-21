@@ -68,3 +68,17 @@
     left: 700px;
     top: 200px;
   }
+
+  .clear {
+    text-align: center; /* Center the text horizontally */
+    font-size: 1.5em; /* Make the text larger */
+    color: #757575; /* Set a soft gray color */
+    padding: 20px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a border */
+    border-radius: 8px; /* Round the corners */
+    margin: 20px auto; /* Add some margin and center the element */
+    width: 50%; /* Set the width */
+    background-color: #f9f9f9; /* Set a light background color */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  }
+  

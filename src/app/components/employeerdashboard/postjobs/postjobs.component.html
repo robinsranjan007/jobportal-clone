@@ -311,7 +311,9 @@
 </div >
 <button  type="button" class="ms-3" mat-stroked-button color="primary" (click)="addskill()">add</button>
 
-
+<div class="description">
+  <textarea placeholder="write details about your requirements" class="form-control"  [formControlName]="'detailDescription'" id="exampleFormControlTextarea1" rows="3"></textarea> 
+</div>
 
     <div class="container" class="mt-3 d-flex align-items-center justify-content-center mb-3" >
       <button
@@ -324,6 +326,8 @@
         SUBMIT
       </button>
     </div>
+
+
   </form>
 
   <button mat-button mat-dialog-close>Close</button>

@@ -15,12 +15,13 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./postjobs.component.css'],
 })
 export class PostjobsComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public data:null,private ref : MatDialogRef<PostjobsComponent>) {
+  constructor(private ref : MatDialogRef<PostjobsComponent>) {
 
   }
 
 
 reactiveform: FormGroup = new FormGroup({});
+ 
 
 
 
@@ -28,6 +29,7 @@ reactiveform: FormGroup = new FormGroup({});
     this.generateForm();
    
     
+
   }
 
    
@@ -94,6 +96,7 @@ reactiveform: FormGroup = new FormGroup({});
         }),
       ]),
       skills: new FormArray([new FormControl(null, [Validators.required])]),
+      detailDescription:new FormControl(null)
     });
   }
 
