@@ -1,0 +1,55 @@
+.card-box{
+width: 50vw;
+display: block;
+margin: auto;
+margin-top: 20px;
+box-shadow: 2px 2px 2px #888888;
+}
+
+.description, .about-company ,.imposters
+{
+    width: 50vw;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    box-shadow: 2px 2px 2px #888888;
+}
+/* .about-company  
+{
+    width: 50vw;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    box-shadow: 2px 2px 2px #888888;
+} */
+
+.action-buttons{
+    margin-left: auto;
+}
+
+.action-buttons button{
+    border-radius: 12px;
+}
+
+span
+{
+    font-weight: bolder;
+}
+
+.logo
+{
+    display: block;
+    width:60px;
+    margin-left: auto;
+}
+
+
+.address{
+    list-style-type: none;
+    display: flex;
+}
+
+.address li
+{
+    margin-right: 10px;
+}

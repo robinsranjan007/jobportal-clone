@@ -1,0 +1,310 @@
+<div class="container">
+  <mat-card>
+    <form [formGroup]="cvform">
+      <div
+        class="container information"
+        [formGroupName]="'personalinformation'"
+      >
+        <p>personal information</p>
+        <mat-form-field>
+          <mat-label> name</mat-label>
+          <input type="text" matInput [formControlName]="'name'" />
+          <mat-error> Please enter a valid name </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label> number</mat-label>
+          <input type="number" matInput [formControlName]="'number'" />
+          <mat-error> Please enter a valid email address </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label> address</mat-label>
+          <input type="text" matInput [formControlName]="'address'" />
+          <mat-error> Please enter a valid email address </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label> email</mat-label>
+          <input type="email" matInput [formControlName]="'email'" />
+          <mat-error> Please enter a valid email address </mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- sumarry -->
+      <div class="container summary">
+        <p>summary</p>
+        <mat-form-field>
+          <mat-label>Summary</mat-label>
+          <textarea
+            matInput
+            placeholder="please write your Summary"
+            [formControlName]="'professionalSummary'"
+          ></textarea>
+        </mat-form-field>
+      </div>
+
+      <!-- experience -->
+      <div class="container workExperience">
+        <p>workexperience</p>
+        <div [formArrayName]="'workExperience'">
+          <div *ngFor="let item of workExperience.controls; let i = index">
+            <div [formGroupName]="i">
+              <mat-form-field>
+                <mat-label>job title</mat-label>
+                <input
+                  [formControlName]="'jobtitle'"
+                  type="text"
+                  matInput
+                  placeholder="please enter your designation"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>companyName</mat-label>
+                <input
+                  [formControlName]="'companyName'"
+                  type="text"
+                  matInput
+                  placeholder="please enter your companyName"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>location</mat-label>
+                <input
+                  [formControlName]="'location'"
+                  type="text"
+                  matInput
+                  placeholder="please enter your location"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>startingDate</mat-label>
+                <input
+                  type="date"
+                  matInput
+                  placeholder="please enter your startingDate"
+                  [formControlName]="'startingDate'"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>endingDate</mat-label>
+                <input
+                  type="date"
+                  matInput
+                  placeholder="please enter your endingDate"
+                  [formControlName]="'EndDate'"
+                />
+                <button type="button" mat-stroked-button color="accent" (click)="deleteWorkExperience(i)" > delete this</button>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <button type="button" mat-stroked-button color="accent" (click)="addWorkExperience()" >add more</button>
+      </div>
+
+      <!-- education -->
+      <div [formArrayName]="'education'">
+        <div *ngFor="let item of education.controls; let i = index">
+          <div class="container education" [formGroupName]="i">
+            <p>education</p>
+
+            <mat-form-field>
+              <mat-label>Degree</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="please enter your degree"
+                [formControlName]="'degree'"
+              />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Field of Study</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="please enter your field of study"
+                [formControlName]="'fieldOfStudy'"
+              />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Institution Name</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="please enter your institution name"
+                [formControlName]="'institutionName'"
+              />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Location</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="please enter the location"
+                [formControlName]="'location'"
+              />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Start Date</mat-label>
+              <input
+                type="date"
+                matInput
+                placeholder="please enter the start date"
+                [formControlName]="'startDate'"
+              />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>End Date</mat-label>
+              <input
+                type="date"
+                matInput
+                placeholder="please enter the end date"
+                [formControlName]="'EndDate'"
+              />
+            </mat-form-field>
+          </div>
+          <button type="button" mat-stroked-button color="accent" (click)="deleteEducation(i)">delete</button>
+        </div>
+        <button type="button" mat-stroked-button color="accent" (click)="addEducation()">add more</button>
+      </div>
+      <div class="conatainer skills" [formArrayName]="'skills'">
+            <p>skills</p>
+            <mat-form-field *ngFor="let item of skills.controls; let i = index">
+          <mat-label>skills</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="please enter your skills"
+            [formControlName]="i"
+          />
+          <button type="button" mat-stroked-button color="accent" (click)="removeSkills(i)">add more</button>
+            </mat-form-field>
+            <button type="button" mat-stroked-button color="accent" (click)="addSkills()">add more</button>
+            
+      </div>
+
+      <div class="container certification" [formArrayName]="'certifiation'">
+        <p>certification</p>
+        <mat-form-field
+          *ngFor="let item of certifiation.controls; let i = index"
+        >
+          <mat-label>certification</mat-label>
+          <input
+            type="string"
+            matInput
+            placeholder="please enter your certification"
+            [formControlName]="i"
+          />
+          <button type="button" mat-stroked-button color="accent" (click)="removeCertification(i)">add more</button>
+        </mat-form-field>
+        <button type="button" mat-stroked-button color="accent" (click)="addCertifiation()">add more</button>
+      </div>
+
+      <div [formArrayName]="'projects'">
+        <div
+          class="container projects"
+          *ngFor="let item of projects.controls; let i = index"
+        >
+          <div [formGroupName]="i">
+            <mat-form-field>
+              <mat-label>Project Title</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="please enter your project title"
+                [formControlName]="'projectTitle'"
+              />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Description</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="please enter your project description"
+                [formControlName]="'description'"
+              />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Technologies Used</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="please enter the technologies used"
+                [formControlName]="'technologiesUsed'"
+              />
+            </mat-form-field>
+
+             
+            <button type="button" mat-stroked-button color="accent" (click)="removeProjects(i)">add more</button>
+          </div>
+        </div>
+        <button  type="button" mat-stroked-button color="accent"  (click)="addprojects()">add Projects</button>
+      </div>
+
+      <div [formArrayName]="'publication'">
+        <div *ngFor="let item of publication.controls; let i = index">
+          <div class="container publication" [formGroupName]="i">
+            <mat-form-field>
+              <mat-label>Title</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="Please enter the title"
+                [formControlName]="'title'"
+              />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Name of Publications</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="Please enter the name of the publication"
+                [formControlName]="'nameofPublications'"
+              />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Date</mat-label>
+              <input
+                type="date"
+                matInput
+                placeholder="Please enter the date"
+                [formControlName]="'date'"
+              />
+            </mat-form-field>
+            <button type="button" mat-stroked-button color="accent" (click)="removePublication(i)">remove publication</button>
+          </div>
+        </div>
+        <button type="button" mat-stroked-button color="accent" (click)="addpublication()">add publication</button>
+      </div>
+
+      <div
+        class="languages"
+        *ngFor="let item of languages.controls; let i = index"
+      >
+      <mat-form-field>
+
+    
+        <mat-label>Languages</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="add languages you can speak"
+          [formControlName]="i"
+        />
+
+        <button type="button" mat-stroked-button color="accent" (click)="removeaddLanguages(i)">add languages</button>
+      </mat-form-field>
+        <button type="button" mat-stroked-button color="accent"  (click)="addLanguages()">add languages</button>
+      </div>
+      <button   class="btn btn-outline-warning" (click)="submit()">submit</button>
+    </form>
+  </mat-card>
+
+</div>

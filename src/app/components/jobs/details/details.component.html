@@ -1,0 +1,80 @@
+<div class="container">
+  <mat-card class="card-box" >
+    <div>
+
+        <mat-card-title > {{item?.profileName}}</mat-card-title>
+        <mat-card-subtitle>{{item?.companyName}}</mat-card-subtitle>
+        <img   class="logo"  src={{item?.companyLogo}} >
+    </div>
+    <mat-card-content>
+      <p><strong> experience: </strong> {{item?.experience}} | {{item?.costToCompany}}</p>
+      <p>{{item?.employementType}}</p>
+      <p><strong>location</strong> {{item?.openingLocation}}</p>
+      <hr />
+
+      <div class="card-footer d-flex">
+        <p>openings: {{item?.openings}}</p>
+        <div class="action-buttons  ">
+            <!-- <button mat-stroked-button color="primary" class="me-3">Register To Apply</button>
+            <button mat-raised-button color="primary">Login to Apply</button> -->
+            <button mat-stroked-button color="primary" (click)="gotoCv(item?.id)" >click to apply</button>
+        </div>
+
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div >
+    <mat-card class="description">
+        <mat-card-title>job description</mat-card-title>
+        <mat-card-subtitle class="mt-2">{{item?.profileName}}</mat-card-subtitle>
+        <mat-card-content>
+            <p><span>Project Role Description:</span> {{item?.jobDescription}}</p>
+           <p><span>Role:</span> {{item?.role}}</p>
+           <p><span>Industry type:</span>{{item?.industryType}}</p>
+           <p><span>Department:</span> {{item?.department}}</p>
+           <p><span>Employment Type:</span>{{item?.employementType}}</p>
+            <p><span>Qualification:</span>{{item?.higestEducation}}</p>
+            <p><span>Years of Experience:</span>{{item?.experience}}</p>
+            <p><span>Skill Required:</span> </p>
+            <ul *ngFor="let skills of item?.skills">
+                <li>{{skills}}</li>
+            </ul>
+           
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div class="container">
+    <mat-card class="about-company">
+<mat-card-title>About Company</mat-card-title>
+<mat-card-content>
+     {{item?.detailDescription}}
+</mat-card-content>
+ <mat-card-subtitle>
+    Company Info
+ </mat-card-subtitle>
+ <mat-card-content>
+    <p><span>Address</span>
+    </p>
+    <ul  *ngFor="let address of item?.address" class="address">
+        <li>   {{address.state}}</li>
+        <li > {{address.city}}</li>
+        <li > {{address.streetNumber}}</li>
+        <li > {{address.pincode}}</li>
+    </ul>
+ </mat-card-content>
+    </mat-card>
+</div>
+
+
+<div class="container">
+    <mat-card class="imposters">
+        <mat-card-title>
+            Beware of Imposters!
+        </mat-card-title>
+        <mat-card-content>
+            <p>Naukri.com does not promise a job or an interview in exchange of money. Fraudsters may ask you to pay in the pretext of registration fee</p>
+        </mat-card-content>
+    </mat-card>
+</div>

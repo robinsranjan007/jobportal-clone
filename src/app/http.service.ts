@@ -3,12 +3,14 @@ import { firebase, jobsProfile } from './modal';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs';
 import { ErrorService } from './error.service';
+import { ErrorComponent } from './components/error/error.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpService {
-  constructor(private http: HttpClient, private errorService: ErrorService) {}
+  constructor(private http: HttpClient, private errorService: ErrorService,private dialog:MatDialog) {}
 
   postJobs(data: jobsProfile) {
     return this.http
@@ -55,4 +57,17 @@ return this.http.delete<jobsProfile>(`https://naukriclone-b7b09-default-rtdb.fir
   })
 )
   }
+
+  
+
+  openErrorModal(errMsg:string) {
+    const errorModal=  this.dialog.open(ErrorComponent, {
+        width: '80%',
+        enterAnimationDuration: '1000ms',
+        exitAnimationDuration: '1000ms',
+        disableClose: true,
+        data:errMsg
+      });
+    }
+  
 }

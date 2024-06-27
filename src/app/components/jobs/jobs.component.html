@@ -1,1 +1,62 @@
- 
+<div class="container mt-4 header-box">
+    <div class="boxes d-flex">
+        <mat-card class="ms-1 mt-4">
+            <h3>iOS App Developer</h3>
+        </mat-card>
+        <mat-card class="ms-1 mt-4">
+            <h3>Backend Developer Jobs</h3>
+        </mat-card>
+        <mat-card class="ms-1 mt-4">
+            <h3>DevOps Developer Jobs</h3>
+        </mat-card>
+        <mat-card class="ms-1 mt-4">
+            <h3>Architect Jobs</h3>
+        </mat-card>
+        <mat-card class="ms-1 mt-4">
+            <h3>Salesforce Developer Jobs</h3>
+        </mat-card>
+        <mat-card class="ms-1 mt-4">
+            <h3>iOS App Developer</h3>
+        </mat-card>
+        <mat-card class="ms-1 mt-4">
+            <h3>iOS App Developer</h3>
+        </mat-card>
+    </div>
+</div>
+
+<div class="container mt-3 d-flex job-section">
+    <div class="filter-box" style="border: 1px solid black;">
+        <h2>Hi, this is the filter box</h2>
+    </div>
+
+    <div class="jobs-cards ms-2">
+        <mat-spinner *ngIf="loadspinner" style="margin-right: 50px;"></mat-spinner>
+
+        <mat-card *ngFor="let item of jobsData" class="jobs-label">
+            <div class="card-head d-flex">
+                <div class="head-content">
+                    <mat-card-title>{{ item.profileName }}</mat-card-title>
+                    <mat-card-subtitle>{{ item.companyName }}</mat-card-subtitle>
+                </div>
+                <div class="logo ms-auto">
+                    <img width="80px" class="ms-auto" [src]="item.companyLogo" alt="">
+                </div>
+            </div>
+
+            <mat-card-content>
+                <p style="color: grey;"><i class="fa fa-briefcase" aria-hidden="true"></i> {{ item.experience }}
+                    experience | <i class="fa fa-inr" aria-hidden="true"></i> {{ item.costToCompany }} | <i
+                        class="fa fa-map-marker" aria-hidden="true"></i> {{ item.openingLocation }}</p>
+                <p style="color: grey;"><i class="fa fa-clipboard" aria-hidden="true"></i> {{ item.jobDescription }}</p>
+                <ul class="d-flex skills">
+                    <li *ngFor="let skill of item.skills" class="ms-2">{{ skill }}</li>
+                </ul>
+                <button mat-raised-button color="accent" (click)="goToDetails(item.id)">Details</button>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div class="advertisement-box ms-2">
+        <h2>Hi, this is the advertisement box</h2>
+    </div>
+</div>

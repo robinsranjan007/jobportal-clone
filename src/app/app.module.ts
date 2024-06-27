@@ -21,6 +21,8 @@ import { ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from  '@angular/common/http';
 import { ErrorComponent } from './components/error/error.component';
 import { DescriptionmodalComponent } from './components/employeerdashboard/descriptionmodal/descriptionmodal.component';
+import { DetailsComponent } from './components/jobs/details/details.component';
+import { CvformComponent } from './components/jobs/cvform/cvform.component';
  
  
 
@@ -39,6 +41,8 @@ import { DescriptionmodalComponent } from './components/employeerdashboard/descr
       EmployeerdashboardComponent,
       ErrorComponent,
       DescriptionmodalComponent,
+      DetailsComponent,
+      CvformComponent,
     
      
       

@@ -104,6 +104,7 @@ reactiveform: FormGroup = new FormGroup({});
   submit() {
    
     this.ref.close(this.reactiveform.value as jobsProfile)
+    
   }
 
 

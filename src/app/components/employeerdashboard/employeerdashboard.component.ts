@@ -47,17 +47,17 @@ export class EmployeerdashboardComponent implements OnInit {
   postJobs(val: jobsProfile) {
     this.loadspinner = true;
     this.httpservice.postJobs(val).subscribe({
-      next: (val) => {
+      next: (val:jobsProfile) => {
         console.log('successfully posted', val)
-        this.getjobs()
         this.loadspinner = false;
+        this.getjobs()
         this.openSnackBar();
       },
 
       error: (err: HttpErrorResponse) => {
         this.loadspinner = false;
         console.log(err.message);
-        this.openErrorModal(err.message)
+        this.httpservice.openErrorModal(err.message)
       },
 
     });
@@ -75,7 +75,7 @@ getjobs()
     }),
     error: (err: HttpErrorResponse) => {
       this.loadspinner = false;
-      this.openErrorModal(err.message)
+      this.httpservice.openErrorModal(err.message)
     },
 
   })
@@ -92,15 +92,12 @@ const dialogRef=this.dialog.open(this.deleteJobPost,{
 })
 
 dialogRef.afterClosed().subscribe((val)=>{
-  console.log(val);
-if(val==='yes')
+if(val===true)
   {
     this.deleteJob(id)
   }
 })
-
 }
-
 
 
 deleteJob(id:string|undefined)
@@ -114,7 +111,7 @@ deleteJob(id:string|undefined)
       },
       error: (err: HttpErrorResponse) => {
         this.loadspinner = false;
-        this.openErrorModal(err.message)
+        this.httpservice.openErrorModal(err.message)
       },
       
     }
@@ -122,23 +119,14 @@ deleteJob(id:string|undefined)
 }
 
 
-  openSnackBar() {
+ openSnackBar() {
     this._snackBar.open('successfully posted!!', 'click here to continue!!', {
       horizontalPosition: 'center',
       verticalPosition: 'top',
     });
   }
 
-  openErrorModal(errMsg:string) {
-  const errorModal=  this.dialog.open(ErrorComponent, {
-      width: '80%',
-      enterAnimationDuration: '1000ms',
-      exitAnimationDuration: '1000ms',
-      disableClose: true,
-      data:errMsg
-    });
-  }
-
+ 
 
   openDescriptionModal(detailDescription:string)
   {
