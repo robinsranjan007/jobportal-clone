@@ -3,12 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
 import { JobsComponent } from './components/jobs/jobs.component';
 import { CompaniesComponent } from './components/companies/companies.component';
-import { ServicesComponent } from './components/services/services.component';
-import { PostjobsComponent } from './components/employeerdashboard/postjobs/postjobs.component';
+ 
 import { ApplicationsComponent } from './components/applications/applications.component';
 import { EmployeerdashboardComponent } from './components/employeerdashboard/employeerdashboard.component';
 import { DetailsComponent } from './components/jobs/details/details.component';
 import { CvformComponent } from './components/jobs/cvform/cvform.component';
+import { AppicationsDetailsComponent } from './components/applications/appications-details/appications-details.component';
 
 const routes: Routes = [
   {
@@ -42,10 +42,7 @@ const routes: Routes = [
     path: 'companies',
     component: CompaniesComponent,
   },
-  {
-    path: 'services',
-    component: ServicesComponent,
-  },
+   
   {
     path: 'dashboard',
     component: EmployeerdashboardComponent,
@@ -54,6 +51,15 @@ const routes: Routes = [
     path: 'applications',
     component: ApplicationsComponent,
   },
+  {
+    path:'applications',
+    children:[
+      {
+        path:'applicants/:id',
+        component:AppicationsDetailsComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({

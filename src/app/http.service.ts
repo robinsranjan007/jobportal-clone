@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { firebase, jobsProfile } from './modal';
+import { Curriculumvitae, firebase, jobsProfile } from './modal';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs';
 import { ErrorService } from './error.service';
@@ -31,7 +31,7 @@ export class HttpService {
         'https://naukriclone-b7b09-default-rtdb.firebaseio.com/jobs.json'
       )
       .pipe(
-        map((response: firebase) => {
+       map((response: firebase) => {
           let jobsArray: jobsProfile[] = [];
           for (let key in response) {
             if (response.hasOwnProperty(key)) {
@@ -58,7 +58,42 @@ return this.http.delete<jobsProfile>(`https://naukriclone-b7b09-default-rtdb.fir
 )
   }
 
+
+// cv service
+
+
+
+postCv(data:Curriculumvitae)
+{
+return this.http.post<Curriculumvitae>('https://naukriclone-b7b09-default-rtdb.firebaseio.com/carriculum.json',data).pipe(
+  catchError((val)=>{
+   return this.errorService.handleError(val)
+  }),
+  tap((val)=>{
+    console.log(val,'this is cv value');
+    
+  })
+)
+}
+
   
+getCv()
+{
+  return this.http.get<{ [key: string]: Curriculumvitae }>('https://naukriclone-b7b09-default-rtdb.firebaseio.com/carriculum.json').pipe(
+    map((response:{ [key: string]: Curriculumvitae })=>{
+      let cvarr:Curriculumvitae[]=[];
+     for (let key in response) {
+            if (response.hasOwnProperty(key)) {
+              cvarr.push({ ...response[key],id:key });
+            }
+
+          }
+      return cvarr;
+    })
+  )
+}
+
+
 
   openErrorModal(errMsg:string) {
     const errorModal=  this.dialog.open(ErrorComponent, {

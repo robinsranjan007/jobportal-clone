@@ -1,0 +1,94 @@
+
+ 
+<mat-spinner *ngIf="loadspinner" class="mx-auto mt-5">
+
+</mat-spinner>
+
+<div class="container d-flex" *ngIf="!loadspinner">
+    <mat-card>
+      <div class="right-box">
+        <div class="image d-flex flex-column justify-content-center">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNouSYF7SGHOcJxxOF7XyyMbzyNWD5abuwjQ&s"
+            alt=""
+          />
+          <h2 class="text-center">My Goals</h2>
+          <p class="text-center">{{ cvDetails?.professionalSummary }}</p>
+        </div>
+        <div class="head-body">
+          <h1 class="text-center">Skills</h1>
+          <div class="list">
+            <li *ngFor="let item of cvDetails?.skills">{{ item }}</li>
+          </div>
+          <h1 class="text-center">Languages</h1>
+          <div class="list">
+            <li *ngFor="let item of cvDetails?.languages">{{ item }}</li>
+          </div>
+          <h1 class="text-center">Certifications</h1>
+          <div class="list">
+            <li *ngFor="let item of cvDetails?.certification">{{ item }}</li>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  
+    <mat-card>
+      <div class="left-box">
+        <div class="header ms-3">
+          <h2>{{ cvDetails?.personalinformation?.name }}</h2>
+          <h4>Software Engineer</h4>
+          <div class="d-flex contact-info">
+            <li>{{ cvDetails?.personalinformation?.email }}</li>
+            <li class="ms-3">{{ cvDetails?.personalinformation?.number }}</li>
+            <li class="ms-3">{{ cvDetails?.personalinformation?.address }}</li>
+          </div>
+        </div>
+        <hr />
+        <div class="body-body">
+          <!-- Education -->
+          <h1>Education</h1>
+          <div class="education">
+            <div *ngFor="let item of cvDetails?.education" class="education-item">
+              <p><strong>Degree:</strong> {{ item.degree }}</p>
+              <p><strong>Field of Study:</strong> {{ item.fieldOfStudy }}</p>
+              <p><strong>Institution:</strong> {{ item.institutionName }}</p>
+              <p><strong>Dates:</strong> {{ item.startDate }} - {{ item.endDate }}</p>
+              <p><strong>Location:</strong> {{ item.location }}</p>
+            </div>
+          </div>
+  
+          <!-- Experience -->
+          <h1>Experience</h1>
+          <div class="experience">
+            <div *ngFor="let item of cvDetails?.experience" class="experience-item">
+              <p><strong>Company:</strong> {{ item.companyName }}</p>
+              <p><strong>Title:</strong> {{ item.jobtitle }}</p>
+              <p><strong>Location:</strong> {{ item.location }}</p>
+              <p><strong>Dates:</strong> {{ item.startingDate }} - {{ item.endDate }}</p>
+            </div>
+          </div>
+  
+          <!-- Projects -->
+          <h1>Projects</h1>
+          <div class="projects">
+            <div *ngFor="let item of cvDetails?.projects" class="project-item">
+              <p><strong>Title:</strong> {{ item.projectTitle }}</p>
+              <p><strong>Description:</strong> {{ item.description }}</p>
+              <p><strong>Technologies:</strong> {{ item.technologiesUsed }}</p>
+            </div>
+          </div>
+  
+          <!-- Publications -->
+          <h1>Publications</h1>
+          <div class="publications">
+            <div *ngFor="let item of cvDetails?.publication" class="publication-item">
+              <p><strong>Title:</strong> {{ item.title }}</p>
+              <p><strong>Publication Name:</strong> {{ item.nameofPublications }}</p>
+              <p><strong>Date:</strong> {{ item.date }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  

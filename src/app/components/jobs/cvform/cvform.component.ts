@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpService } from 'src/app/http.service';
 import { Curriculumvitae } from 'src/app/modal';
 
 @Component({
@@ -8,232 +9,184 @@ import { Curriculumvitae } from 'src/app/modal';
   styleUrls: ['./cvform.component.css']
 })
 export class CvformComponent implements OnInit {
-[x: string]: any;
+  cvform: FormGroup = new FormGroup({});
 
-  constructor() { }
-
-
-cvform:FormGroup=new FormGroup({})
+  constructor(private httpservice: HttpService) { }
 
   ngOnInit(): void {
-
-    this.createCv()
+    this.createCv();
   }
 
+  createCv() {
+    this.cvform = new FormGroup({
+      personalinformation: new FormGroup({
+        name: new FormControl(null, [Validators.required]),
+        address: new FormControl(null, [Validators.required]),
+        number: new FormControl(null, [Validators.required]),
+        email: new FormControl(null, [Validators.required])
+      }),
+      professionalSummary: new FormControl(null, [Validators.required, Validators.maxLength(200)]),
+      experience: new FormArray([
+        new FormGroup({
+          jobtitle: new FormControl(null, [Validators.required]),
+          companyName: new FormControl(null, [Validators.required]),
+          location: new FormControl(null, [Validators.required]),
+          startingDate: new FormControl(null, [Validators.required]),
+          endDate: new FormControl(null, [Validators.required]),
+        })
+      ]),
+      education: new FormArray([
+        new FormGroup({
+          degree: new FormControl(null, [Validators.required]),
+          fieldOfStudy: new FormControl(null, [Validators.required]),
+          institutionName: new FormControl(null, [Validators.required]),
+          location: new FormControl(null, [Validators.required]),
+          startDate: new FormControl(null, [Validators.required]),
+          endDate: new FormControl(null, [Validators.required]),
+        })
+      ]),
+      skills: new FormArray([new FormControl(null, [Validators.required])]),
+      certification: new FormArray([new FormControl(null, [Validators.required])]),
+      projects: new FormArray([
+        new FormGroup({
+          projectTitle: new FormControl(null, [Validators.required]),
+          description: new FormControl(null, [Validators.required]),
+          technologiesUsed: new FormControl(null, [Validators.required]),
+        })
+      ]),
+      publication: new FormArray([
+        new FormGroup({
+          title: new FormControl(null, [Validators.required]),
+          nameofPublications: new FormControl(null, [Validators.required]),
+          date: new FormControl(null, [Validators.required]),
+        })
+      ]),
+      languages: new FormArray([new FormControl(null, [Validators.required])])
+    });
+  }
 
-createCv()
-{
-  this.cvform=new FormGroup({
-    personalinformation: new FormGroup({
-      name:new FormControl(null,[Validators.required]),
-      address:new FormControl(null,[Validators.required]),
-      number:new FormControl(null,[Validators.required]),
-      email:new FormControl(null,[Validators.required])
-    }),
-    professionalSummary:new FormControl(null,[Validators.required,Validators.maxLength(200)]),
-    workExperience:new FormArray([
-      new FormGroup({
-        jobtitle:new FormControl(null,[Validators.required]),
-        companyName:new FormControl(null,Validators.required),
-        location:new FormControl(null,[Validators.required]),
-        startingDate:new FormControl(null,[Validators.required]),
-        EndDate:new FormControl(null,[Validators.required]),
-      })
-    ]),
-    education:new FormArray([
-      new FormGroup({
-        degree:new FormControl(null,[Validators.required]),
-        fieldOfStudy:new FormControl(null,[Validators.required]),
-        institutionName:new FormControl(null,[Validators.required]),
-        location:new FormControl(null,[Validators.required]),
-        startDate:new FormControl(null,[Validators.required]),
-        EndDate:new FormControl(null,[Validators.required]),
-      })
-    ]),
-    skills:new FormArray([new FormControl(null, [Validators.required])]),
-    certifiation:new FormArray([new FormControl(null, [Validators.required])]),
-    projects:new FormArray([
-      new FormGroup({
-        projectTitle:new FormControl(null,[Validators.required]),
-        description:new FormControl(null,[Validators.required]),
-        technologiesUsed:new FormControl(null,[Validators.required]),
-      })
-    ]),
+  get experience(): FormArray {
+    return this.cvform.get('experience') as FormArray;
+  }
 
-    publication:new FormArray([
-      new FormGroup({
-        title:new FormControl(null,[Validators.required]),
-        nameofPublications:new FormControl(null,[Validators.required]),
-        date:new FormControl(null,[Validators.required]),
-      })
-    ]),
+  get education(): FormArray {
+    return this.cvform.get('education') as FormArray;
+  }
 
+  get skills(): FormArray {
+    return this.cvform.get('skills') as FormArray;
+  }
 
-    languages:new FormArray([new FormControl(null,[Validators.required])])
+  get certification(): FormArray {
+    return this.cvform.get('certification') as FormArray;
+  }
 
+  get projects(): FormArray {
+    return this.cvform.get('projects') as FormArray;
+  }
 
-  })
-}
+  get publication(): FormArray {
+    return this.cvform.get('publication') as FormArray;
+  }
 
+  get languages(): FormArray {
+    return this.cvform.get('languages') as FormArray;
+  }
 
+  submit() {
+    this.postCv(this.cvform.value as Curriculumvitae);
+    this.cvform.reset()
+  }
 
-// getters for arrays
+  addExperience() {
+    const exp = new FormGroup({
+      jobtitle: new FormControl(null, [Validators.required]),
+      companyName: new FormControl(null, [Validators.required]),
+      location: new FormControl(null, [Validators.required]),
+      startingDate: new FormControl(null, [Validators.required]),
+      endDate: new FormControl(null, [Validators.required]),
+    });
+    this.experience.push(exp);
+  }
 
-get workExperience(): FormArray {
-  return this.cvform.get('workExperience') as FormArray;
-}
+  deleteExperience(i: number) {
+    this.experience.removeAt(i);
+  }
 
-get education():FormArray{
-  return this.cvform.get('education') as FormArray;
-}
+  addEducation() {
+    const edu = new FormGroup({
+      degree: new FormControl(null, [Validators.required]),
+      fieldOfStudy: new FormControl(null, [Validators.required]),
+      institutionName: new FormControl(null, [Validators.required]),
+      location: new FormControl(null, [Validators.required]),
+      startDate: new FormControl(null, [Validators.required]),
+      endDate: new FormControl(null, [Validators.required]),
+    });
+    this.education.push(edu);
+  }
 
-get skills():FormArray
-{
-  return this.cvform.get('skills') as FormArray;
-}
-get certifiation():FormArray
-{
-  return this.cvform.get('certifiation') as FormArray;
-}
-get projects():FormArray
-{
-  return this.cvform.get('projects') as FormArray;
-}
+  deleteEducation(i: number) {
+    this.education.removeAt(i);
+  }
 
-get publication():FormArray
-{
-  return this.cvform.get('publication') as FormArray;
-}
+  addSkill() {
+    const skill = new FormControl(null, [Validators.required]);
+    this.skills.push(skill);
+  }
 
+  removeSkill(i: number) {
+    this.skills.removeAt(i);
+  }
 
-get languages():FormArray
-{
-  return this.cvform.get('languages') as FormArray;
-}
+  addCertification() {
+    const cert = new FormControl(null, [Validators.required]);
+    this.certification.push(cert);
+  }
 
+  removeCertification(i: number) {
+    this.certification.removeAt(i);
+  }
 
-submit()
-{
-  console.log(this.cvform.value as Curriculumvitae);
-  
-}
+  addProject() {
+    const proj = new FormGroup({
+      projectTitle: new FormControl(null, [Validators.required]),
+      description: new FormControl(null, [Validators.required]),
+      technologiesUsed: new FormControl(null, [Validators.required]),
+    });
+    this.projects.push(proj);
+  }
 
+  removeProject(i: number) {
+    this.projects.removeAt(i);
+  }
 
-// dynamically adding 
+  addPublication() {
+    const pub = new FormGroup({
+      title: new FormControl(null, [Validators.required]),
+      nameofPublications: new FormControl(null, [Validators.required]),
+      date: new FormControl(null, [Validators.required]),
+    });
+    this.publication.push(pub);
+  }
 
-addWorkExperience()
-{
-const exp=new FormGroup({
-  jobtitle:new FormControl(null,[Validators.required]),
-  companyName:new FormControl(null,Validators.required),
-  location:new FormControl(null,[Validators.required]),
-  startingDate:new FormControl(null,[Validators.required]),
-  EndDate:new FormControl(null,[Validators.required]),
-});
+  removePublication(i: number) {
+    this.publication.removeAt(i);
+  }
 
-(this.cvform.get('workExperience') as FormArray).push(exp);
-}
+  addLanguage() {
+    const lang = new FormControl(null, [Validators.required]);
+    this.languages.push(lang);
+  }
 
+  removeLanguage(i: number) {
+    this.languages.removeAt(i);
+  }
 
-deleteWorkExperience(i:number)
-{
-  (this.cvform.get('workExperience') as FormArray).removeAt(i);
-}
-
-addEducation()
-{
-  const edtech=new FormGroup({
-    degree:new FormControl(null,[Validators.required]),
-    fieldOfStudy:new FormControl(null,[Validators.required]),
-    institutionName:new FormControl(null,[Validators.required]),
-    location:new FormControl(null,[Validators.required]),
-    startDate:new FormControl(null,[Validators.required]),
-    EndDate:new FormControl(null,[Validators.required]),
-  });
-
- ( this.cvform.get('education') as FormArray).push(edtech)
-  
-}
-
-deleteEducation(i:number)
-{
-  ( this.cvform.get('education') as FormArray).removeAt(i)
-}
-
-
-addSkills()
-{
-  const skill = new FormControl(null,[Validators.required]);
-
-  (this.cvform.get('skills') as FormArray).push(skill)
- 
-}
-
-
-removeSkills(i:number)
-{
-(  this.cvform.get('skills') as FormArray).removeAt(i)
- 
-}
-
-
-addCertifiation()
-{
-  const certificate = new FormControl(null,[Validators.required]);
-  (this.cvform.get('certifiation') as FormArray).push(certificate)
-}
-
-removeCertification(i:number)
-{
-  (this.cvform.get('certifiation') as FormArray).removeAt(i)
-}
-
-addprojects()
-{
-  const projects=  new FormGroup({
-    projectTitle:new FormControl(null,[Validators.required]),
-    description:new FormControl(null,[Validators.required]),
-    technologiesUsed:new FormControl(null,[Validators.required]),
-  });
-
-(this.cvform.get('projects') as FormArray).push(projects)
-
-}
-
-
-removeProjects(i:number)
-{
-
-  (this.cvform.get('projects') as FormArray).removeAt(i)
-}
-
-addpublication()
-{
-  const publication =  new FormGroup({
-    title:new FormControl(null,[Validators.required]),
-    nameofPublications:new FormControl(null,[Validators.required]),
-    date:new FormControl(null,[Validators.required]),
-  });
-
-  (this.cvform.get('publication') as FormArray).push(publication)
-}
-
-removePublication(i:number)
-{
-  (this.cvform.get('publication') as FormArray).removeAt(i)
-}
-
-
-addLanguages()
-{
-  const lang=new FormControl(null,[Validators.required]);
-  (this.cvform.get('language')as FormArray).push(lang)
-}
-
-removeaddLanguages(i:number)
-{
-  (this.cvform.get('language') as FormArray).removeAt(i)
-}
-
-
+  postCv(data: Curriculumvitae) {
+    this.httpservice.postCv(data).subscribe({
+      next: (val) => {
+        console.log(val, 'this is in the subscribe');
+      }
+    });
+  }
 }

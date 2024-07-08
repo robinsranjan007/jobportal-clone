@@ -1,4 +1,4 @@
-import { NumberSymbol } from "@angular/common"
+ 
 
 export interface jobsProfile{
     id?:string,
@@ -36,53 +36,53 @@ export interface firebase{
 
 // cv
 
-
-export interface Curriculumvitae
-{
- personalinformation:personalInformation,
- professionalaSummary:string,
- experience:workExperience[],
- education:education[],
- skills:string[],
- certifiation:string[],
- projects:projects[],
- publication:publications,
- languages:string[]
-}
-
-export interface personalInformation{
-name:string,
-address:string,
-number:string,
-email:string,
-}
-
-export interface  workExperience{
-jobtitle:string,
-companyName:string,
-location:string,
-startingDate:Date,
-EndDate:Date,
-}
-
-export interface education{
-    degree:string,
-    fieldOfStudy:string,
-    institutionName:string,
-    location:string,
-    startDate:Date,
-    EndDate:Date,
-}
-
-export interface projects{
-    projectTitle:string,
-    description:string,
-    technologiesUsed:string,
-}
-
-export interface publications{
-    title:string,
-    nameofPublications:string,
-    date:Date,
-
-}
+export interface Curriculumvitae {
+    id?: string;
+    personalinformation: PersonalInformation;
+    professionalSummary: string;
+    experience: WorkExperience[];
+    education: Education[];
+    skills: string[];
+    certification: string[]; // Corrected typo
+    projects: Projects[];
+    publication: Publications[]; // Corrected typo
+    languages: string[];
+  }
+  
+  export interface PersonalInformation {
+    name: string;
+    address: string;
+    number: string;
+    email: string;
+  }
+  
+  export interface WorkExperience {
+    jobtitle: string;
+    companyName: string;
+    location: string;
+    startingDate: Date;
+    endDate: Date; // Corrected typo
+  }
+  
+  export interface Education {
+    degree: string;
+    fieldOfStudy: string;
+    institutionName: string;
+    location: string;
+    startDate: Date;
+    endDate: Date; // Corrected typo
+  }
+  
+  export interface Projects {
+    projectTitle: string;
+    description: string;
+    technologiesUsed: string;
+  }
+  
+  export interface Publications {
+    title: string;
+    nameofPublications: string;
+    date: Date;
+  }
+  
+ 
