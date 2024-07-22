@@ -9,22 +9,29 @@ export class ErrorService {
 
   constructor() { }
 
-
-  handleError(err:HttpErrorResponse)
-  {
-let errMsg=''
-
-if(err.error && err.error.error)
-  {
-    errMsg= err.error.error
-  }
-  else
-  {
-    errMsg ="something went wrong please check your internet connection"
-  }
-
-  return throwError( ()=>new Error(errMsg))
-
+  handleError(error: HttpErrorResponse) {
+    let errMsg: string;
+   console.log(error);
+   
+    if (error.error) {
+      if (error.error.error) {
+        if (error.error.error.message) {
+           
+          errMsg = error.error.error.message;
+        } else {
+        
+          errMsg = error.error.error;
+        }
+      } else {
+        // If there's an error body but no specific error object
+        errMsg = JSON.stringify(error.error);
+      }
+    } else {
+      // If there's no error body
+      errMsg = "Something went wrong, please check your internet connection";
+    }
+  
+    return throwError(() => new Error(errMsg));
   }
 
 

@@ -6,7 +6,12 @@
 
 </mat-spinner>
 
-<table mat-table [dataSource]="dataSource"  *ngIf="!loadspinner" class="mat-elevation-z8 container mt-5">
+
+<div *ngIf="TABLE_DATA.length==0">
+  <h1>empty</h1>
+</div>
+
+<table mat-table [dataSource]="dataSource"  *ngIf="!loadspinner && TABLE_DATA.length!=0" class="mat-elevation-z8 container mt-5">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->

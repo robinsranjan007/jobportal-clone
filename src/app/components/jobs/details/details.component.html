@@ -15,9 +15,8 @@
       <div class="card-footer d-flex">
         <p>openings: {{item?.openings}}</p>
         <div class="action-buttons  ">
-            <!-- <button mat-stroked-button color="primary" class="me-3">Register To Apply</button>
-            <button mat-raised-button color="primary">Login to Apply</button> -->
-            <button mat-stroked-button color="primary" (click)="gotoCv(item?.id)" >click to apply</button>
+            <button mat-stroked-button color="primary" (click)="gotoCv(item?.id)"  *ngIf="loggedIn">click to apply</button>
+            <button mat-stroked-button color="primary"   [routerLink]="'/login'"  *ngIf="!loggedIn">register to apply {{loggedIn}}</button>
         </div>
 
       </div>

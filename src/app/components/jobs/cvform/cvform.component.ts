@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpService } from 'src/app/http.service';
@@ -186,6 +187,9 @@ export class CvformComponent implements OnInit {
     this.httpservice.postCv(data).subscribe({
       next: (val) => {
         console.log(val, 'this is in the subscribe');
+      },
+      error:(err:HttpErrorResponse)=>{
+        this.httpservice.openErrorModal(err.message)
       }
     });
   }

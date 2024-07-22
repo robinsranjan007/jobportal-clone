@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from 'src/app/http.service';
 import { jobsProfile } from 'src/app/modal';
+import { RegistrationService } from 'src/app/registration.service';
 
 @Component({
   selector: 'app-details',
@@ -11,19 +12,28 @@ import { jobsProfile } from 'src/app/modal';
 })
 export class DetailsComponent implements OnInit {
 
-  constructor(private httpservice: HttpService, private route: ActivatedRoute,private router:Router) { }
+  constructor(private httpservice: HttpService, private route: ActivatedRoute,private router:Router,private restrationservice:RegistrationService,private cdr: ChangeDetectorRef) { }
 
   jobsDetails: jobsProfile[] =[];
    item!:jobsProfile|undefined
   loadspinner: boolean = false;
   jobsId: string | null = null;  
+  loggedIn:boolean=false;
+  
 
   ngOnInit(): void {
     
     this.route.paramMap.subscribe(params => {
       this.jobsId = params.get('id');  
       this.getJobsData();  
+      this.restrationservice.currentUser.subscribe((val)=>{
+        this.loggedIn=val?true:false
+        this.cdr.markForCheck();
+        console.log(this.loggedIn,'this is loggedIn');
+      })
     });
+    
+   
     
     
   }

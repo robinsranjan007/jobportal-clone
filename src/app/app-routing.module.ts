@@ -2,19 +2,28 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
 import { JobsComponent } from './components/jobs/jobs.component';
-import { CompaniesComponent } from './components/companies/companies.component';
- 
 import { ApplicationsComponent } from './components/applications/applications.component';
 import { EmployeerdashboardComponent } from './components/employeerdashboard/employeerdashboard.component';
 import { DetailsComponent } from './components/jobs/details/details.component';
 import { CvformComponent } from './components/jobs/cvform/cvform.component';
 import { AppicationsDetailsComponent } from './components/applications/appications-details/appications-details.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { AuthService } from './auth.service';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'naukri',
     pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    component: SignUpComponent,
+  },
+  {
+    path: 'adminlogin',
+    component: AdminComponent,
   },
   {
     path: 'naukri',
@@ -34,15 +43,11 @@ const routes: Routes = [
       {
         path: 'details/cv/:id',
         component: CvformComponent,
+        canActivate: [AuthService],
       },
     ],
   },
 
-  {
-    path: 'companies',
-    component: CompaniesComponent,
-  },
-   
   {
     path: 'dashboard',
     component: EmployeerdashboardComponent,
@@ -52,14 +57,14 @@ const routes: Routes = [
     component: ApplicationsComponent,
   },
   {
-    path:'applications',
-    children:[
+    path: 'applications',
+    children: [
       {
-        path:'applicants/:id',
-        component:AppicationsDetailsComponent
-      }
-    ]
-  }
+        path: 'applicants/:id',
+        component: AppicationsDetailsComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({

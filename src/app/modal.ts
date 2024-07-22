@@ -86,3 +86,22 @@ export interface Curriculumvitae {
   }
   
  
+  // registration 
+
+  export interface login{
+    email:string,
+    password:string
+  }
+
+
+  export interface Authresponse{
+    email:string,
+    expiresIn:Date,
+    idToken:string,
+    kind:boolean,
+    localId:string,
+    refreshToken:string,
+    displayName?:string
+    registered?:boolean
+  }
+ 

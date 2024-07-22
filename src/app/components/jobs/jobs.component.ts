@@ -38,6 +38,8 @@ getJobs()
     error:(err:HttpErrorResponse)=>{
       this.loadspinner=false;
       this.httpservice.openErrorModal(err.message)
+      
+      
     }
   })
 }
